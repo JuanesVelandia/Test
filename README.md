@@ -25,12 +25,11 @@ Follow these steps to set up and run SecureDevScript locally:
 
 ```bash
 git clone https://github.com/your-username/SecureDevScript.git
-cd SecureDevScript
+cd Test/myproject
 ```
 
 2. Create a virtual environment and activate it:
 ```bash
-Copy code
 python -m venv venv
 source venv/bin/activate
 ```
