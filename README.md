@@ -25,18 +25,18 @@ Follow these steps to set up and run SecureDevScript locally:
 
 ```bash
 git clone https://github.com/JuanesVelandia/Test
-cd Test/myproject
 ```
 
 2. Create a virtual environment and activate it:
 ```bash
-python -m venv venv
-source venv/bin/activate
+python -m venv myenv
+myenv\Scripts\activate
 ```
 3. Install the project dependencies:
 
 ```bash
 pip install -r requirements.txt
+cd Test/myproject
 ```
 4. Run the development server:
 ```bash
