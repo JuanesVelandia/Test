@@ -1,0 +1,226 @@
+{% load static %} 
+
+<div className="App">
+    <head>
+      <meta charset="utf-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+      <meta name="description" content="" />
+      <meta name="author" content="" />
+      <title>SecureDevScript</title>
+      <link rel="icon" type="image/png" href='{%static "images/logo.ico"%}' />
+      <link type = 'text/css' rel="stylesheet" href='{% static "css/index.css" %}'>
+      <link type = 'text/css' rel="stylesheet" href='{% static "css/App.css" %}'>
+  </head>
+  <body>
+      <nav class="navbar navbar-light bg-light static-top">
+          <div class="container">
+              <a class="navbar-brand">SecureDevScript By ShadowLock</a>
+              <a class="btn btn-link" href="#About">About the project</a>
+          </div>
+      </nav>
+      <header class="masthead">
+          <div class="container position-relative">
+              <div class="row justify-content-center">
+                  <div class="col-xl-6">
+                      <div class="text-center text-white">
+                          <h1 class="mb-5">Upload your file to be scanned for vulnerabilities</h1>
+                          <form class="form-subscribe" id="contactForm" method="post" enctype="multipart/form-data">
+                            <div class="input-group mb-3">
+                          <div class="custom-file">
+                            {% csrf_token %}
+                            {{ form.as_p }}
+                              <button type="submit" onclick="mostrarPantallaCarga()" style="margin-left: -1rem;">Upload</button>
+                          </div>
+                          <div class='barrita'>
+                            <div class="slidecontainer">
+                                <p style="margin-left: -1.5rem;">Level of creativity of the AI</p>
+                                <input type="range" step="0.1" min="0.2" max="1.2" value="0.7" class="drag__bar" id="temperature" name="temperature" oninput='changeColor()'></input>
+                                <div class="lowhight">
+                                    <p>Low<span class="espacios-en-blanco"></span>High</p>
+                                </div>
+                            </div>
+                          </div>
+                          </div>
+                          
+                          <div id="pantalla-carga" style="display: none; margin-left: -3rem;">
+                            <div class="spinner">
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                            </div>
+                            <p class="loading_block" style="margin-left: 2.5rem;">Processing...</p>
+                          </div>
+
+
+                              <div class="d-none" id="submitSuccessMessage">
+                                  <div class="text-center mb-3">
+                                      <div class="fw-bolder">Form submission successful!</div>
+                                      <p>To activate this form, sign up at</p>
+                                  </div>
+                              </div>
+                              <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3">Error sending message!</div></div>
+                          </form>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </header>
+      <section class="features-icons bg-light text-center">
+          <div class="container">
+              <div class="row">
+                  <div class="col-lg-4">
+                      <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
+                          <div class="features-icons-icon d-flex"><i class="bi-window m-auto text-primary"></i></div>
+                          <h3>Findings</h3>
+                          <p class="lead mb-0">Assists in the detection and correction of vulnerabilities in the code, which are essential for maintaining the confidentiality, integrity, and availability of data and systems, as well as ensuring that the software operates efficiently and securely at all times.</p>
+                      </div>
+                  </div>
+                  <div class="col-lg-4">
+                      <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
+                          <div class="features-icons-icon d-flex"><i class="bi-layers m-auto text-primary"></i></div>
+                          <h3>Changes</h3>
+                          <p class="lead mb-0">SecureDevScript provides valuable results, including a secure version of the submitted code, highlighted with comments detailing the changes made to eliminate vulnerabilities. Additionally, it offers a descriptive summary of the alterations performed. Users can download the enhanced code and gain insights into the security improvements made to their software, ensuring a safer and more reliable application.</p>
+                      </div>
+                  </div>
+                  <div class="col-lg-4">
+                      <div class="features-icons-item mx-auto mb-0 mb-lg-3">
+                          <div class="features-icons-icon d-flex"><i class="bi-terminal m-auto text-primary"></i></div>
+                          <h3>More info</h3>
+                          <p class="lead mb-0">Our website also provides you with URLs where you can delve deeper into the vulnerabilities present in your code. Additionally, you can adjust the creativity of the model, meaning how risky the LLM is going to be. Also you have a summary of your code regardless if is vulnerable or not.</p>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </section>
+      <section class="showcase">
+          <div class="container-fluid p-0">
+              <div class="row g-0">
+                <div class="col-lg-6 order-lg-1 my-auto showcase-text" id='About'>
+                    <h2>About the proyect</h2>
+                    <p class="lead mb-0">Our Django-based web application is a powerful tool designed to simplify and enhance the experience for developers and cybersecurity professionals. With a focus on code security and vulnerability correction, our application allows users to upload their source code files and receive detailed analysis and automatic fixes. We leverage advanced natural language processing and machine learning technologies to assess and enhance the code, ensuring software integrity and security. Furthermore, we offer a user-friendly interface that enables users to customize settings according to their needs, including the processing model's creativity. Our mission is to provide a comprehensive solution for maintaining secure and robust software development projects.</p>
+                </div>
+                  <div class="col-lg-6 order-lg-1 my-auto showcase-text">
+                    <img src="{% static 'images/logo.png' %}" alt="Descripción de la imagen">
+                  </div>
+              </div>
+              <div class="row g-1">
+                  <div class="col-lg-6 my-auto showcase-text" id="About_Us" >
+                      <h2>About Us</h2>
+                      <p class="lead mb-0">We are a passionate group of students at Universidad del Rosario, focused on academic excellence and the exploration of the disciplines of Applied Mathematics and Computer Science. Our dedication to these areas has brought us together as a committed and enthusiastic team.</p>
+                    <h2 class="mission">Our Mission</h2>
+                    <p class="lead mb-0">Our mission is to promote learning and research in Applied Mathematics and Computer Science by fostering collaboration and innovation. We seek to apply our knowledge and skills to address real-world challenges and contribute to the advancement of technology and science.</p>
+                  </div>
+                  <div id="carousel">
+                    <div class="carousel-slide">
+                        <img src="{% static 'images/foto01.jpg' %}" alt="Imagen 1">
+                        <div class="image-text">Santiago Uribe Luna santiago.uribe@urosario.edu.co</div>
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="{% static 'images/foto05.jpg' %}" alt="Imagen 2">
+                        <div class="image-text">Juan Esteban Velandia juanes.velandia@urosario.edu.co</div>
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="{% static 'images/foto02.jpg' %}" alt="Imagen 3">
+                        <div class="image-text">Jose David Echeverri jose.echeverri@urosario.edu.co</div>
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="{% static 'images/foto03.jpg' %}" alt="Imagen 4">
+                        <div class="image-text">Juan Sebastián Bernal<br>juanseba.bernal@urosario.edu.co</div>
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="{% static 'images/foto04.png' %}" alt="Imagen 5">
+                        <div class="image-text">Maria Camila Patarroyo mariac.patarroyo@urosario.edu.co</div>
+                    </div>
+                </div>
+                
+                </div>
+          </div>
+      </section>
+      <footer class="footer">
+          <div class="container">
+              <div class="row">
+                  <div class="col-lg-6 h-100 text-center text-lg-start my-auto">
+                      <ul class="list-inline mb-2">
+                          <li class="list-inline-item"><a href="{% url 'information' %}">About</a></li>
+                          <li class="list-inline-item">⋅</li>
+                          <li class="list-inline-item"><a href="{% url 'information' %}#contact_sec">Contact</a></li>
+                          <li class="list-inline-item">⋅</li>
+                          <li class="list-inline-item"><a href="{% url 'information' %}#Terms_sec">Terms of Use</a></li>
+                          <li class="list-inline-item">⋅</li>
+                          <li class="list-inline-item"><a href="{% url 'information' %}#Privacy_sec">Privacy Policy</a></li>
+                      </ul>
+                      <p class="text-muted small mb-4 mb-lg-0">&copy;  SecureDevScript 2023. All Rights Reserved.</p>
+                  </div>
+                  <div class="col-lg-6 h-100 text-center text-lg-end my-auto">
+                      <ul class="list-inline mb-0">
+                          <li class="list-inline-item me-4">
+                              <a href="#!"><i class="bi-facebook fs-3"></i></a>
+                          </li>
+                          <li class="list-inline-item me-4">
+                              <a href="#!"><i class="bi-twitter fs-3"></i></a>
+                          </li>
+                          <li class="list-inline-item">
+                              <a href="#!"><i class="bi-ins fs-3"></i></a>
+                          </li>
+                      </ul>
+                  </div>
+              </div>
+          </div>
+      </footer>
+      <script>
+
+        const temperatureInput = document.getElementById('temperature');
+        const temperatureOutput = document.getElementById('temperature-output');
+        const pantallaCarga = document.getElementById('pantalla-carga');
+        let archivoCargado = false;
+
+        temperatureInput.addEventListener('input', function() {
+            temperatureOutput.textContent = temperatureInput.value;
+        });
+
+        window.addEventListener('load', function() {
+            document.getElementById('pantalla-carga').style.display = 'none';
+        });
+        
+        function marcarArchivoCargado() {
+            archivoCargado = true;
+        }
+
+        function mostrarPantallaCarga() {
+            if (archivoCargado) {
+                pantallaCarga.style.display = 'block';
+            }
+        }
+
+        const archivoInput = document.querySelector('input[type="file"]');
+        archivoInput.addEventListener('change', marcarArchivoCargado);
+
+        const carousel = document.getElementById('carousel');
+        const slides = carousel.querySelectorAll('.carousel-slide');
+        let currentIndex = 0;
+
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.style.display = i === index ? 'block' : 'none';
+            });
+        }
+
+        function nextImage() {
+            currentIndex = (currentIndex + 1) % slides.length;
+            showSlide(currentIndex);
+        }
+
+        function prevImage() {
+            currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+            showSlide(currentIndex);
+        }
+
+        setInterval(nextImage, 4000); // Cambia de imagen automáticamente cada 3 segundos (3000 ms)
+
+        showSlide(currentIndex);
+    </script>
+  </body>
+</div>
