@@ -35,8 +35,9 @@ myenv\Scripts\activate
 3. Install the project dependencies:
 
 ```bash
+cd Test
 pip install -r requirements.txt
-cd Test/myproject
+cd myproject
 ```
 4. Run the development server:
 ```bash
